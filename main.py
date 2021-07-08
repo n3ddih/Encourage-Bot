@@ -115,6 +115,8 @@ List of command:
 		encouragements = []
 		if "encouragements" in db.keys():
 			encouragements = list(db["encouragements"]) + encourage
+		else:
+			encouragements = encourage
 		await msg.channel.send(encouragements)
 
 	if msgContent.startswith("$response"):
