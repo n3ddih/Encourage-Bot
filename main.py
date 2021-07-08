@@ -98,14 +98,14 @@ List of command:
 		await msg.channel.send(random.choice(options))
 
 	if msgContent.startswith('$add'):
-		message = msgContent.split("!add ", 1)[1]
+		message = msgContent.split("$add ", 1)[1]
 		add_encouragements(message)
 		await msg.channel.send("New encouraging message added!")
 
 	if msgContent.startswith("$del"):
 		encouragements = []
 		if "encouragements" in db.keys():
-			index = int(msgContent.split("!del", 1)[1])
+			index = int(msgContent.split("$del", 1)[1])
 			delete_encouragement(index)
 			encouragements = db['encouragements']
 		await msg.channel.send("An encouraging deleted!")
@@ -119,7 +119,7 @@ List of command:
 
 	if msgContent.startswith("$response"):
 		try:
-			value = msgContent.split("!response ", 1)[1]
+			value = msgContent.split("$response ", 1)[1]
 		except:
 			await msg.channel.send(db["responding"])
 			return
