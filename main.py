@@ -74,18 +74,18 @@ async def on_message(msg):
 		await msg.channel.send('''
 This bot is used to encourage you by using a quote when you tell it if you are feeling down. It\'s not the best but it will try.
 List of command:
-[+] "!inspire" - print a inspire statement
-[+] "!list" - print quote list
-[+] "!add {string}" - add a quote
-[+] "!del {index}" - delete a quote
-[+] "!response {boolean}" - add a quote
+[+] "$inspire" - print a inspire statement
+[+] "$list" - print quote list
+[+] "$add {string}" - add a quote
+[+] "$del {index}" - delete a quote
+[+] "$response {boolean}" - add a quote
 		''')
 
 
-	if msgContent.startswith('!hello'):
+	if msgContent.startswith('$hello'):
 		await msg.channel.send('Hello there. Hope you have a great day.')
 
-	if msgContent.startswith('!inspire'):
+	if msgContent.startswith('$inspire'):
 		quote = get_quote()
 		await msg.channel.send(quote)
 
@@ -97,12 +97,12 @@ List of command:
 	if any(word in msgContent for word in sad_words):
 		await msg.channel.send(random.choice(options))
 
-	if msgContent.startswith('!add'):
+	if msgContent.startswith('$add'):
 		message = msgContent.split("!add ", 1)[1]
 		add_encouragements(message)
 		await msg.channel.send("New encouraging message added!")
 
-	if msgContent.startswith("!del"):
+	if msgContent.startswith("$del"):
 		encouragements = []
 		if "encouragements" in db.keys():
 			index = int(msgContent.split("!del", 1)[1])
@@ -111,13 +111,13 @@ List of command:
 		await msg.channel.send("An encouraging deleted!")
 		await msg.channel.send(list(encouragements))
 
-	if msgContent.startswith("!list"):
+	if msgContent.startswith("$list"):
 		encouragements = []
 		if "encouragements" in db.keys():
 			encouragements = list(db["encouragements"]) + encourage
 		await msg.channel.send(encouragements)
 
-	if msgContent.startswith("!response"):
+	if msgContent.startswith("$response"):
 		try:
 			value = msgContent.split("!response ", 1)[1]
 		except:
