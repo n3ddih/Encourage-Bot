@@ -70,7 +70,7 @@ async def on_message(msg):
 
 	msgContent = msg.content
 
-	if msgContent.startswith('!help'):
+	if msgContent.startswith('$help'):
 		await msg.channel.send('''
 This bot is used to encourage you by using a quote when you tell it if you are feeling down. It\'s not the best but it will try.
 List of command:
